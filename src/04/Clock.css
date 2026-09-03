@@ -1,0 +1,156 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Noto+Sans+KR:wght@400;600&display=swap");
+
+.clock-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: background-color 0.4s ease;
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+/* ---------- 다크 모드 : 차가운 네온 (사이언 블루) ---------- */
+.clock-page[data-theme="dark"] {
+    background-color: #060a14;
+    --sign-bg: #0b1220;
+    --sign-border: #12203a;
+    --neon-color: #4ce7ff;
+    --neon-glow-1: rgba(76, 231, 255, 0.85);
+    --neon-glow-2: rgba(76, 231, 255, 0.45);
+    --neon-glow-3: rgba(60, 130, 255, 0.35);
+    --muted-text: #6f8bab;
+}
+
+/* ---------- 라이트 모드 : 따뜻한 네온 (코랄 오렌지) ---------- */
+.clock-page[data-theme="light"] {
+    background-color: #fbeee1;
+    --sign-bg: #1c130f;
+    --sign-border: #2c1c14;
+    --neon-color: #ff7a45;
+    --neon-glow-1: rgba(255, 122, 69, 0.85);
+    --neon-glow-2: rgba(255, 122, 69, 0.45);
+    --neon-glow-3: rgba(255, 62, 90, 0.35);
+    --muted-text: #a6785f;
+}
+
+.theme-toggle {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    padding: 8px 16px;
+    font-family: "Noto Sans KR", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--muted-text);
+    background: transparent;
+    border: 1px solid var(--sign-border);
+    border-radius: 999px;
+    cursor: pointer;
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus-visible {
+    color: var(--neon-color);
+    border-color: var(--neon-color);
+}
+
+.theme-toggle:focus-visible {
+    outline: 2px solid var(--neon-color);
+    outline-offset: 2px;
+}
+
+.clock-container {
+    background-color: var(--sign-bg);
+    border: 1px solid var(--sign-border);
+    border-radius: 18px;
+    padding: 56px 64px;
+    text-align: center;
+    box-shadow: 0 0 60px rgba(0, 0, 0, 0.35);
+}
+
+.clock-department {
+    margin: 0 0 28px;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--muted-text);
+}
+
+.neon-clock {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 6px;
+    font-family: "Orbitron", sans-serif;
+}
+
+.neon-digit {
+    font-size: clamp(48px, 9vw, 96px);
+    font-weight: 700;
+    color: var(--neon-color);
+    letter-spacing: 0.02em;
+    text-shadow:
+        0 0 6px var(--neon-glow-1),
+        0 0 18px var(--neon-glow-2),
+        0 0 40px var(--neon-glow-3);
+    animation: neon-breathe 3.6s ease-in-out infinite;
+}
+
+.neon-colon {
+    font-size: clamp(36px, 6vw, 72px);
+    font-weight: 700;
+    color: var(--neon-color);
+    text-shadow:
+        0 0 6px var(--neon-glow-1),
+        0 0 16px var(--neon-glow-2);
+    animation: neon-blink 1s steps(1, end) infinite;
+    transform: translateY(-6px);
+}
+
+.clock-caption {
+    margin: 28px 0 0;
+    font-size: 14px;
+    color: var(--muted-text);
+}
+
+@keyframes neon-breathe {
+    0%,
+    100% {
+        text-shadow:
+            0 0 6px var(--neon-glow-1),
+            0 0 18px var(--neon-glow-2),
+            0 0 40px var(--neon-glow-3);
+    }
+    50% {
+        text-shadow:
+            0 0 4px var(--neon-glow-1),
+            0 0 12px var(--neon-glow-2),
+            0 0 28px var(--neon-glow-3);
+    }
+}
+
+@keyframes neon-blink {
+    0%,
+    49% {
+        opacity: 1;
+    }
+    50%,
+    100% {
+        opacity: 0.25;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .neon-digit,
+    .neon-colon {
+        animation: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .clock-container {
+        padding: 40px 28px;
+    }
+}
