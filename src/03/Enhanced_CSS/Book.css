@@ -1,0 +1,61 @@
+/* Book.css */
+
+/* Library.jsx의 감싸는 div를 클래스 수정 없이 자동으로 가로 정렬 */
+div:has(> .book-card) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    min-height: 100vh;
+    background-image: url("https://i.pinimg.com/474x/2c/0b/ba/2c0bba6ab918183bcd8bd674dd5ba874.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Book 카드 기본 스타일 */
+.book-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 220px;
+    padding: 16px;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.book-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* 책 표지 배경 이미지 스타일 */
+.book-cover {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    object-position: top;
+}
+
+/* 책 제목 (h1) */
+.book-card h1 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 8px 0 4px 0;
+    text-align: center;
+    word-break: keep-all;
+}
+
+/* 페이지 수 (h2) */
+.book-card h2 {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #64748b;
+    margin: 0;
+}
