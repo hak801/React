@@ -1,0 +1,35 @@
+/* Welcome 컴포넌트 공통 스타일 */
+.welcome {
+    /* 문서(부모) 너비의 50% */
+    width: 50%;
+
+    /* 좌우 auto -> 블록 자체가 가운데 정렬 */
+    margin: 16px auto;
+
+    /* 글자도 가운데 정렬 */
+    text-align: center;
+
+    padding: 20px 0;
+    border-radius: 12px;
+    box-sizing: border-box;
+    font-size: 24px;
+    color: #333333;
+}
+
+/* 순서대로 배경색을 다르게 지정 (h1 기준으로 셈) */
+.welcome:nth-of-type(1) {
+    background-color: #ffd9d9;
+}
+
+.welcome:nth-of-type(2) {
+    background-color: #d9ecff;
+}
+
+.welcome:nth-of-type(3) {
+    background-color: #dcffd9;
+}
+
+/* 4번째 이후에 대한 기본값 */
+.welcome:nth-of-type(n + 4) {
+    background-color: #f0f0f0;
+}

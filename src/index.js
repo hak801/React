@@ -6,16 +6,18 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 // import Library from "./03/Enhanced_CSS/Library";
 // import './03/Enhanced_CSS/Book.css'
- import Clock from "./04/Clock";
- import './04/Clock.css'
-
+//  import Clock from "./04/ConfirmDialog/Clock";
+//  import './04/ConfirmDialog/Clock.css'
+// import ConfirmDialog from "./04/ConfirmDialog/ConfirmDialog";
+// import ConfirmDialogList from "./04/ConfirmDialog/ConfirmDialogList";
+import WelcomeList from "./05/WelcomeList";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 setInterval(() => {
     root.render(
         <React.StrictMode>
-            <Clock/>
+            <WelcomeList/>
         </React.StrictMode>
     );
     }

@@ -1,0 +1,9 @@
+div{
+    text-align: center;
+    padding: 20px;
+}
+
+.div-bg-ivory{
+    background-color: #fbeee1;
+    border: 5px groove #bc3eca;
+}
