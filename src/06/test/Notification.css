@@ -1,0 +1,208 @@
+/* ===== 폰트 ===== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap');
+
+/* ===== 움직이는 그라데이션 배경 ===== */
+body {
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: linear-gradient(-45deg, #0f0c29, #302b63, #5b2c6f, #24243e, #41295a);
+    background-size: 400% 400%;
+    animation: bg-shift 18s ease infinite;
+    font-family: "Poppins", "Segoe UI", "Pretendard", sans-serif;
+}
+
+/* 배경에 떠다니는 빛망울 */
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: 0.55;
+    z-index: 0;
+    pointer-events: none;
+}
+body::before {
+    width: 420px;
+    height: 420px;
+    top: -120px;
+    left: -100px;
+    background: radial-gradient(circle, #22d3ee, transparent 70%);
+    animation: float-a 14s ease-in-out infinite;
+}
+body::after {
+    width: 480px;
+    height: 480px;
+    bottom: -140px;
+    right: -120px;
+    background: radial-gradient(circle, #ec4899, transparent 70%);
+    animation: float-b 16s ease-in-out infinite;
+}
+
+/* ===== 알림 목록 컨테이너 ===== */
+.notification-list {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    max-width: 480px;
+    margin: 70px auto;
+    padding: 0 16px;
+}
+
+/* ===== 알림 카드 ===== */
+.notification {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 22px 26px 22px 62px;
+    border-radius: 20px;
+    color: #ffffff;
+
+    /* 유리질감 */
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+    box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.45),
+        inset 0 1px 1px rgba(255, 255, 255, 0.3);
+
+    overflow: hidden;
+    isolation: isolate;
+    animation: card-in 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
+}
+
+/* 회전하는 네온 그라데이션 테두리 */
+.notification::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 2px;              /* 테두리 두께 */
+    border-radius: 20px;
+    background: conic-gradient(
+        from var(--angle, 0deg),
+        #22d3ee, #a855f7, #ec4899, #f59e0b, #22d3ee
+    );
+    /* 가운데를 비워 테두리만 보이게 */
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    /* 주기를 3초로 → 카드 생성 간격(3초)과 동기화 */
+    animation: spin-border 3s linear infinite;
+    z-index: -1;
+}
+
+/* 카드 위를 지나가는 반짝임(shimmer) */
+.notification::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+        115deg,
+        transparent,
+        rgba(255, 255, 255, 0.35),
+        transparent
+    );
+    transform: skewX(-20deg);
+    /* 주기를 3초로 → 카드 생성 간격(3초)과 동기화 */
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+/* 왼쪽 빛나는 점 */
+.notification-dot,
+.notification::marker { display: none; }
+
+/* 호버 */
+.notification:hover {
+    transform: translateY(-6px) scale(1.03);
+    box-shadow:
+        0 20px 55px rgba(168, 85, 247, 0.55),
+        inset 0 1px 1px rgba(255, 255, 255, 0.4);
+}
+
+/* ===== 메시지 텍스트 (그라데이션 글자) ===== */
+.notification-message {
+    position: relative;
+    font-size: 16.5px;
+    font-weight: 600;
+    line-height: 1.55;
+    letter-spacing: 0.2px;
+    background: linear-gradient(90deg, #ffffff, #e0e7ff, #fbcfe8);
+    -webkit-background-clip: text;
+            background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 18px rgba(255, 255, 255, 0.15);
+}
+
+/* 메시지 앞 반짝이는 아이콘 */
+.notification-message::before {
+    content: "✦";
+    position: absolute;
+    left: -34px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    -webkit-text-fill-color: #fde047;
+    text-shadow: 0 0 14px rgba(253, 224, 71, 0.9);
+    /* 주기를 1.5초로 → 3초의 약수라 동기화됨 */
+    animation: twinkle 1.5s ease-in-out infinite;
+}
+
+/* ===== 애니메이션 키프레임 ===== */
+@property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+@keyframes spin-border {
+    to { --angle: 360deg; }
+}
+
+@keyframes bg-shift {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes card-in {
+    from {
+        opacity: 0;
+        transform: translateY(-26px) scale(0.92);
+        filter: blur(6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+@keyframes shimmer {
+    0%   { left: -150%; }
+    60%  { left: 150%; }
+    100% { left: 150%; }
+}
+
+@keyframes twinkle {
+    0%, 100% { transform: translateY(-50%) scale(1) rotate(0deg); opacity: 1; }
+    50%      { transform: translateY(-50%) scale(1.5) rotate(90deg); opacity: 0.7; }
+}
+
+@keyframes float-a {
+    0%, 100% { transform: translate(0, 0); }
+    50%      { transform: translate(60px, 50px); }
+}
+
+@keyframes float-b {
+    0%, 100% { transform: translate(0, 0); }
+    50%      { transform: translate(-70px, -40px); }
+}
