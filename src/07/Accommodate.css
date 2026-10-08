@@ -1,0 +1,79 @@
+/*
+ * 기존 Accommodate.jsx 구조 그대로 쓰는 CSS
+ * 필요한 수정: 맨 바깥 <div>에 className="accommodate" 하나만 추가
+ *
+ * 구조:
+ * div.accommodate
+ *  ├─ p           (현재 총 N명 수용중)
+ *  ├─ div         (버튼 두 개)
+ *  └─ p           (정원 가득참 - isFull일 때만 나타남)
+ */
+
+/* ===== 카드 ===== */
+.accommodate {
+    max-width: 360px;
+    margin: 60px auto;
+    padding: 28px 24px;
+    border-radius: 16px;
+    background: #ffffff;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    border-top: 6px solid #22c55e;           /* 평소: 초록 */
+    font-family: "Pretendard", "Noto Sans KR", sans-serif;
+    text-align: center;
+    transition: border-color 0.3s;
+}
+
+/* 정원 가득참 문구가 나타나면 카드 테두리를 빨강으로 */
+.accommodate:has(> p ~ p) {
+    border-top-color: #ef4444;
+}
+
+/* ===== 현재 인원 문구 (첫 번째 p) ===== */
+.accommodate > p:first-child {
+    margin: 0 0 20px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #374151;
+}
+
+/* ===== 버튼 영역 ===== */
+.accommodate > div {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.accommodate button {
+    flex: 1;
+    padding: 12px 0;
+    border: none;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #ffffff;
+    cursor: pointer;
+    transition: transform 0.1s, opacity 0.2s;
+}
+
+/* 입장 버튼(첫 번째) = 파랑, 퇴장 버튼(마지막) = 회색 */
+.accommodate button:first-child { background: #3b82f6; }
+.accommodate button:last-child  { background: #6b7280; }
+
+.accommodate button:hover  { opacity: 0.85; }
+.accommodate button:active { transform: scale(0.96); }
+
+/* ===== 정원 가득참 알림 (두 번째 p) ===== */
+.accommodate > p ~ p {
+    margin: 20px 0 0;
+    padding: 10px;
+    border-radius: 8px;
+    background: #fee2e2;
+    color: #ef4444;
+    font-weight: 700;
+    animation: blink 1s ease-in-out infinite alternate;
+}
+
+@keyframes blink {
+    from { opacity: 1; }
+    to   { opacity: 0.5; }
+}
