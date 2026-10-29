@@ -1,0 +1,90 @@
+/* Mailbox.css - Mailbox.jsx 전용 스타일 */
+
+/* 전체 화면 배경과 중앙 정렬 */
+.mailbox-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    box-sizing: border-box;
+    background: #e6edf5;
+    font-family: "Pretendard", "Noto Sans KR", "Malgun Gothic", sans-serif;
+}
+
+/* 카드 */
+.mailbox-card {
+    width: 100%;
+    max-width: 440px;
+    padding: 36px 32px 32px;
+    box-sizing: border-box;
+    background: #ffffff;
+    border: 1px solid #c9d6e4;
+    border-top: 6px solid #1f4e79;
+    border-radius: 10px;
+    box-shadow: 0 10px 28px rgba(31, 78, 121, 0.14);
+}
+
+/* 인사말 */
+.mailbox-title {
+    margin: 0 0 20px;
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1.3;
+    color: #17324d;
+}
+
+/* 알림 문구 공통 */
+.mailbox-alert {
+    margin: 0;
+    padding: 16px 18px;
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 1.6;
+    border-radius: 8px;
+    border-left: 5px solid transparent;
+    word-break: keep-all;
+}
+
+/* 읽지 않은 메시지가 있을 때 */
+.mailbox-alert.positive {
+    background: #fdeceb;
+    border-left-color: #c8372d;
+    color: #6b1d17;
+}
+
+/* 읽지 않은 메시지가 없을 때 */
+.mailbox-alert.empty {
+    background: #e8f4ec;
+    border-left-color: #2e8b57;
+    color: #1b4d31;
+}
+
+/* 읽지 않은 메시지 개수 강조 */
+.highlight {
+    display: inline-block;
+    min-width: 1.6em;
+    padding: 0 8px;
+    margin: 0 2px;
+    font-size: 1.15em;
+    font-weight: 800;
+    text-align: center;
+    color: #ffffff;
+    background: #c8372d;
+    border-radius: 999px;
+}
+
+/* 작은 화면 */
+@media (max-width: 480px) {
+    .mailbox-card {
+        padding: 28px 22px 24px;
+    }
+
+    .mailbox-title {
+        font-size: 24px;
+    }
+
+    .mailbox-alert {
+        font-size: 16px;
+    }
+}

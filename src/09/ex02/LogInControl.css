@@ -1,0 +1,74 @@
+/* LogInControl.css
+   LogInControl, Greeting, LoginButton, LogOutButton 용 스타일 */
+
+body {
+    margin: 0;
+    padding: 40px 20px;
+    background-color: #f4f6fa;
+    font-family: "Noto Sans KR", "Malgun Gothic", sans-serif;
+    color: #333;
+}
+
+/* LogInControl 최상위 영역 */
+.login-control {
+    max-width: 420px;
+    margin: 60px auto;
+    padding: 40px 30px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    text-align: center;
+}
+
+/* Greeting 컴포넌트 문구 (h1, h2, p 어느 쪽이든 적용) */
+.login-control h1,
+.login-control h2,
+.login-control p {
+    margin: 0 0 28px;
+    font-size: 24px;
+    font-weight: 700;
+    color: #2c3e50;
+}
+
+/* 버튼 공통 */
+.login-button,
+.logout-button {
+    min-width: 140px;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.login-button:active,
+.logout-button:active {
+    transform: scale(0.97);
+}
+
+.login-button:focus-visible,
+.logout-button:focus-visible {
+    outline: 3px solid #cbd5e1;
+    outline-offset: 2px;
+}
+
+/* 로그인 버튼: 파란색 */
+.login-button {
+    background-color: #3b82f6;
+}
+
+.login-button:hover {
+    background-color: #2563eb;
+}
+
+/* 로그아웃 버튼: 빨간색 */
+.logout-button {
+    background-color: #ef4444;
+}
+
+.logout-button:hover {
+    background-color: #dc2626;
+}

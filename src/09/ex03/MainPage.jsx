@@ -1,0 +1,21 @@
+import React, {useState} from "react";
+import WarningBanner from "../ex04/WarningBanner";
+
+function MainPage() {
+    const[showWarning, setShowWarning] = useState(false);
+
+    const btnListener = () => {
+        setShowWarning(prevShowWarning=> !prevShowWarning);
+    }
+
+    return(
+        <div>
+            <WarningBanner warning = {showWarning}/>
+            <button onClick={btnListener}>
+                {showWarning ? "감추기" : "보이기"}
+            </button>
+        </div>
+    )
+}
+
+export default MainPage;
