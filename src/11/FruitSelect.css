@@ -1,0 +1,279 @@
+.fruit-form {
+  --accent: #ff7a59;
+  --accent-soft: #fff0eb;
+  --text: #2f2a28;
+  --muted: #8a817c;
+  --line: #e9e2dd;
+  --surface: #ffffff;
+
+  width: min(100%, 360px);
+  margin: 40px auto;
+  padding: 24px;
+  box-sizing: border-box;
+  color: var(--text);
+  background: var(--surface);
+  border-radius: 20px;
+  box-shadow: 0 12px 36px rgba(70, 45, 30, 0.12);
+  font-family: "Pretendard", "Noto Sans KR", sans-serif;
+}
+
+.fruit-label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+/* ---------- 선택 버튼 ---------- */
+.fruit-select {
+  position: relative;
+}
+
+.fruit-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 14px 16px;
+  color: var(--text);
+  background: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: 12px;
+  font: inherit;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+.fruit-trigger:hover {
+  border-color: var(--accent);
+}
+
+.fruit-trigger:active {
+  transform: scale(0.98);
+}
+
+.fruit-trigger:focus-visible,
+.fruit-option:focus-visible {
+  outline: 3px solid rgba(255, 122, 89, 0.4);
+  outline-offset: 2px;
+}
+
+.fruit-select.is-open .fruit-trigger {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-soft);
+}
+
+.fruit-placeholder {
+  color: var(--muted);
+}
+
+.fruit-arrow {
+  width: 9px;
+  height: 9px;
+  margin: -4px 4px 0 12px;
+  border-right: 2px solid var(--muted);
+  border-bottom: 2px solid var(--muted);
+  transform: rotate(45deg);
+  transition: transform 0.3s ease, margin 0.3s ease;
+}
+
+.fruit-select.is-open .fruit-arrow {
+  margin-top: 4px;
+  transform: rotate(-135deg);
+}
+
+/* ---------- 메뉴가 부드럽게 열리는 모션 ---------- */
+.fruit-menu {
+  position: absolute;
+  z-index: 10;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  background: var(--surface);
+  border-radius: 12px;
+  box-shadow: 0 14px 32px rgba(70, 45, 30, 0.18);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px) scale(0.97);
+  transform-origin: top center;
+  transition:
+    opacity 0.22s ease,
+    transform 0.28s cubic-bezier(0.2, 0.9, 0.3, 1.15),
+    visibility 0.28s;
+}
+
+.fruit-select.is-open .fruit-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.fruit-menu li {
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+/* 항목이 위에서부터 차례로 나타남 (--i는 JSX에서 전달) */
+.fruit-select.is-open .fruit-menu li {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: calc(var(--i) * 45ms + 40ms);
+}
+
+.fruit-option {
+  width: 100%;
+  padding: 11px 12px;
+  color: var(--text);
+  background: transparent;
+  border: 0;
+  border-radius: 8px;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease, padding-left 0.15s ease;
+}
+
+.fruit-option:hover {
+  padding-left: 18px;
+  background: var(--accent-soft);
+}
+
+.fruit-option.is-selected {
+  color: #c9472a;
+  background: var(--accent-soft);
+  font-weight: 700;
+}
+
+/* ---------- 선택한 과일 이미지 ---------- */
+.fruit-preview {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: 220px;
+  margin-top: 16px;
+  background: #faf7f5;
+  border-radius: 16px;
+}
+
+.fruit-empty {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.fruit-image {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 10px 24px rgba(70, 45, 30, 0.2);
+}
+
+.fruit-emoji {
+  font-size: 96px;
+  line-height: 1;
+}
+
+.fruit-image,
+.fruit-emoji {
+  animation: fruit-pop 0.55s cubic-bezier(0.2, 0.9, 0.3, 1.3);
+}
+
+@keyframes fruit-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) rotate(-14deg);
+  }
+  65% {
+    opacity: 1;
+    transform: scale(1.12) rotate(4deg);
+  }
+  100% {
+    transform: scale(1) rotate(0);
+  }
+}
+
+/* ---------- 선택 이펙트: 퍼지는 원 + 파티클 ---------- */
+.fruit-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border: 4px solid var(--accent);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  animation: fruit-ring 0.7s ease-out;
+}
+
+@keyframes fruit-ring {
+  from {
+    opacity: 0.8;
+    transform: scale(0.6);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.45);
+  }
+}
+
+.fruit-particle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  margin: -5px 0 0 -5px;
+  background: var(--color);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  animation: fruit-burst 0.75s cubic-bezier(0.15, 0.7, 0.3, 1);
+}
+
+@keyframes fruit-burst {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--x), var(--y)) scale(0.2);
+  }
+}
+
+.fruit-name {
+  position: absolute;
+  bottom: 10px;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  animation: fruit-name 0.4s 0.15s ease both;
+}
+
+@keyframes fruit-name {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 시스템에서 '동작 줄이기'를 켠 사용자에게는 모션 최소화 */
+@media (prefers-reduced-motion: reduce) {
+  .fruit-form *,
+  .fruit-form *::before,
+  .fruit-form *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+}

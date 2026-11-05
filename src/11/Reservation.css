@@ -1,0 +1,74 @@
+.reservation-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 360px;
+    margin: 40px auto;
+    padding: 24px;
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    color: #1f2937;
+    font-family: 'Pretendard', 'Noto Sans KR', system-ui, sans-serif;
+    font-size: 15px;
+}
+
+/* 줄바꿈은 flex gap으로 처리 */
+.reservation-form br {
+    display: none;
+}
+
+.reservation-form label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    font-weight: 500;
+}
+
+.reservation-form input[type='checkbox'] {
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    accent-color: #2563eb;
+    cursor: pointer;
+}
+
+.reservation-form input[type='number'] {
+    box-sizing: border-box;
+    width: 90px;
+    padding: 8px 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font: inherit;
+    text-align: right;
+}
+
+.reservation-form input[type='number']:focus {
+    border-color: #2563eb;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+.reservation-form button {
+    padding: 10px;
+    background-color: #2563eb;
+    border: none;
+    border-radius: 8px;
+    color: #ffffff;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.reservation-form button:hover {
+    background-color: #1d4ed8;
+}
+
+.reservation-form button:active {
+    background-color: #1e40af;
+}

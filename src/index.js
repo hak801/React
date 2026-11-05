@@ -30,13 +30,19 @@ import reportWebVitals from './reportWebVitals';
 // import MainPage from "./09/ex03/MainPage";
 import toolbar from "./09/finalEX/Toolbar";
 // import Toolbar from "./09/finalEX/Toolbar";
-import LandingPage from "./09/finalEX/LandingPage";
+// import LandingPage from "./09/finalEX/LandingPage";
+// import Map from "./10/Map";
+// import AttendanceBook from "./10/AttendanceBook";
+// import AttendanceBookCardBook from "./10/AttendanceCardBook";
+// import NewForm from "./11/NewForm";
+// import FruitSelect from "./11/FruitSelect";
+import Reservation from "./11/Reservation";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 setInterval(() => {
         root.render(
             <React.StrictMode>
-                <LandingPage/>
+                <Reservation/>
             </React.StrictMode>
         );
     }

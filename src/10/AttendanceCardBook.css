@@ -1,0 +1,157 @@
+/* 브라우저 기본 여백 제거: 어두운 배경이 화면 끝까지 채워지도록 함 */
+body {
+    margin: 0;
+}
+
+/* 전체 페이지: 제목과 카드 목록을 가운데 정렬 */
+.attendance-book {
+    box-sizing: border-box;
+    min-height: 100vh;
+    padding: 48px 24px 72px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: #17151f;
+    color: #ffffff;
+}
+
+.attendance-title {
+    margin: 0 0 40px;
+    font-size: 2rem;
+    letter-spacing: 0.08em;
+}
+
+.card-list {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 36px;
+}
+
+/* 마우스 위치를 감지하는 영역: 이 영역은 기울지 않아 좌표가 흔들리지 않음 */
+.card-scene {
+    --mx: 50%;
+    --my: 50%;
+    --rx: 0;
+    --ry: 0;
+    width: 220px;
+    aspect-ratio: 55 / 85; /* 실제 포토카드 비율 */
+    perspective: 900px;
+    touch-action: pan-y;
+}
+
+/* 포토카드 본체 */
+.photo-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    isolation: isolate;
+    border-radius: 16px;
+    background: #2a2735;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+    transform: rotateX(calc(var(--rx) * 1deg)) rotateY(calc(var(--ry) * 1deg));
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    will-change: transform;
+}
+
+.card-scene:hover .photo-card {
+    transform: rotateX(calc(var(--rx) * 1deg)) rotateY(calc(var(--ry) * 1deg)) scale(1.05);
+    /* 카드가 기우는 반대 방향으로 그림자가 이동 */
+    box-shadow: calc(var(--ry) * -1.5px) calc(var(--rx) * 1.5px + 20px) 40px rgba(0, 0, 0, 0.6);
+    transition: transform 0.08s linear, box-shadow 0.08s linear;
+}
+
+.card-photo {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+/* 이름과 전공 */
+.card-info {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    padding: 56px 12px 18px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
+}
+
+.card-name {
+    margin: 0 0 4px;
+    font-size: 1.35rem;
+    letter-spacing: 0.04em;
+}
+
+.card-detail {
+    margin: 0;
+    font-size: 0.8rem;
+    opacity: 0.9;
+    word-break: keep-all;
+}
+
+/* 빛 반사와 홀로그램 공통 */
+.card-holo,
+.card-glare {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+/* 무지갯빛 홀로그램: 마우스를 따라 색상이 흐름 */
+.card-holo {
+    background: linear-gradient(
+        115deg,
+        #ff4d8d,
+        #ffd24d,
+        #58f0a7,
+        #4dc3ff,
+        #a66bff,
+        #ff4d8d
+    );
+    background-size: 250% 250%;
+    background-position: var(--mx) var(--my);
+    mix-blend-mode: color-dodge;
+}
+
+/* 마우스 위치의 하이라이트 */
+.card-glare {
+    z-index: 3;
+    background: radial-gradient(
+        circle at var(--mx) var(--my),
+        rgba(255, 255, 255, 0.75) 0%,
+        rgba(255, 255, 255, 0.2) 28%,
+        transparent 60%
+    );
+    mix-blend-mode: overlay;
+}
+
+.card-scene:hover .card-holo {
+    opacity: 0.3;
+}
+
+.card-scene:hover .card-glare {
+    opacity: 1;
+}
+
+/* 움직임 줄이기를 설정한 사용자에게는 기울기를 적용하지 않음 */
+@media (prefers-reduced-motion: reduce) {
+    .photo-card,
+    .card-scene:hover .photo-card {
+        transform: none;
+        transition: none;
+    }
+}
