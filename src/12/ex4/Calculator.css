@@ -1,0 +1,164 @@
+.calculator {
+    max-width: 420px;
+    margin: 40px auto;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    font-family: "Pretendard", "Noto Sans KR", sans-serif;
+}
+
+.temperature-input {
+    margin: 0;
+    padding: 16px 20px 20px;
+    border: 1px solid #dfe3ea;
+    border-radius: 12px;
+    background-color: #f8fafc;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.temperature-input:focus-within {
+    border-color: #4f7cff;
+    box-shadow: 0 0 0 3px rgba(79, 124, 255, 0.15);
+}
+
+.temperature-input.scale-c {
+    border-left: 5px solid #4f7cff;
+}
+
+.temperature-input.scale-f {
+    border-left: 5px solid #ff7a45;
+}
+
+.temperature-legend {
+    padding: 0 6px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #333a45;
+}
+
+.temperature-field {
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 8px;
+    padding: 10px 12px;
+    font-size: 16px;
+    border: 1px solid #cfd5df;
+    border-radius: 8px;
+    background-color: #ffffff;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.temperature-field:focus {
+    border-color: #4f7cff;
+}
+
+.temperature-field::placeholder {
+    color: #a0a7b4;
+}
+
+.verdict {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 50px 0 8px;
+}
+
+.beaker {
+    position: relative;
+    width: 120px;
+    height: 150px;
+    border: 3px solid #9aa4b2;
+    border-top: none;
+    border-radius: 0 0 18px 18px;
+    background-color: #f8fafc;
+}
+
+.water {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 60%;
+    background-color: #7ec8ff;
+    border-radius: 0 0 15px 15px;
+    overflow: hidden;
+    transition: height 0.6s, background-color 0.6s;
+}
+
+.beaker.frozen .water  { background-color: #d9f1ff; }
+.beaker.boiling .water { background-color: #4fa8ff; }
+.beaker.vapor .water   { height: 0; }
+
+.bubbles span {
+    position: absolute;
+    bottom: -10px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.85);
+    opacity: 0;
+}
+.bubbles span:nth-child(1) { left: 12%; animation-delay: 0s; }
+.bubbles span:nth-child(2) { left: 28%; animation-delay: 0.4s; }
+.bubbles span:nth-child(3) { left: 44%; animation-delay: 0.8s; }
+.bubbles span:nth-child(4) { left: 60%; animation-delay: 0.2s; }
+.bubbles span:nth-child(5) { left: 74%; animation-delay: 0.6s; }
+.bubbles span:nth-child(6) { left: 86%; animation-delay: 1s; }
+
+.beaker.boiling .bubbles span {
+    animation: rise 1.2s infinite ease-in;
+}
+
+@keyframes rise {
+    0%   { transform: translateY(0);     opacity: 0; }
+    20%  { opacity: 1; }
+    100% { transform: translateY(-90px); opacity: 0; }
+}
+
+.steam {
+    position: absolute;
+    top: -45px;
+    left: 0;
+    right: 0;
+    height: 45px;
+}
+.steam span {
+    position: absolute;
+    bottom: 0;
+    width: 12px;
+    height: 26px;
+    border-radius: 50%;
+    background-color: rgba(170, 180, 192, 0.6);
+    opacity: 0;
+}
+.steam span:nth-child(1) { left: 18%; animation-delay: 0s; }
+.steam span:nth-child(2) { left: 38%; animation-delay: 0.5s; }
+.steam span:nth-child(3) { left: 58%; animation-delay: 1s; }
+.steam span:nth-child(4) { left: 76%; animation-delay: 1.5s; }
+
+.beaker.boiling .steam span,
+.beaker.vapor .steam span {
+    animation: steam 2s infinite ease-out;
+}
+
+@keyframes steam {
+    0%   { transform: translateY(0) scale(0.6);     opacity: 0; }
+    30%  { opacity: 0.8; }
+    100% { transform: translateY(-30px) scale(1.4); opacity: 0; }
+}
+
+.message {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+.message.liquid  { color: #333a45; }
+.message.frozen  { color: #3b8fd9; }
+.message.boiling { color: #ff7a45; }
+.message.vapor   { color: #e5484d; }
