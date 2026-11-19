@@ -1,0 +1,91 @@
+/* ===== FancyBorder: 깔끔하고 모던한 카드 스타일 ===== */
+
+:root {
+    --fb-bg: #ffffff;
+    --fb-text: #1f2937;
+    --fb-muted: #6b7280;
+    --fb-accent: #4f46e5;
+    --fb-accent-2: #ec4899;
+    --fb-border: #e5e7eb;
+    --fb-shadow: 0 10px 30px rgba(17, 24, 39, 0.08);
+    --fb-radius: 16px;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --fb-bg: #1f2937;
+        --fb-text: #f3f4f6;
+        --fb-muted: #9ca3af;
+        --fb-border: #374151;
+        --fb-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+}
+
+.fancy-border {
+    position: relative;
+    max-width: 560px;
+    margin: 40px auto;
+    padding: 32px 36px;
+    background: var(--fb-bg);
+    color: var(--fb-text);
+    border: 1px solid var(--fb-border);
+    border-radius: var(--fb-radius);
+    box-shadow: var(--fb-shadow);
+    font-family: 'Pretendard', 'Noto Sans KR', system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* 상단 그라데이션 라인 */
+.fancy-border::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--fb-accent), var(--fb-accent-2));
+}
+
+.fancy-border:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(17, 24, 39, 0.12);
+}
+
+/* 제목 */
+.fancy-border h1 {
+    margin: 0 0 8px;
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+/* 본문 */
+.fancy-border p {
+    margin: 0 0 24px;
+    font-size: 1rem;
+    color: var(--fb-muted);
+}
+
+/* 두 번째 이후 제목은 구분선으로 섹션 나누기 */
+.fancy-border p + h1 {
+    padding-top: 24px;
+    border-top: 1px solid var(--fb-border);
+}
+
+.fancy-border > :last-child {
+    margin-bottom: 0;
+}
+
+/* 모바일 */
+@media (max-width: 600px) {
+    .fancy-border {
+        margin: 16px;
+        padding: 24px 20px;
+    }
+
+    .fancy-border h1 {
+        font-size: 1.35rem;
+    }
+}

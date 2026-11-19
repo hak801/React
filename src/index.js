@@ -36,13 +36,19 @@ import toolbar from "./09/finalEX/Toolbar";
 // import AttendanceBookCardBook from "./10/AttendanceCardBook";
 // import NewForm from "./11/NewForm";
 // import FruitSelect from "./11/FruitSelect";
-import Reservation from "./11/Reservation";
+// import Reservation from "./11/Reservation";
+// import BoilingVerdict from "./12/ex2/BoilingVerdict";
+// import Calculator from "./12/ex4/Calculator";
+// import distanceConverter from "./12/ex5/DistanceConverter";
+// import DistanceConverter from "./12/ex5/DistanceConverter";
+import WelcomeDialog from "./13/ex1/WelcomeDialog";
+// import FancyBorder from "./13/ex1/FancyBorder";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 setInterval(() => {
         root.render(
             <React.StrictMode>
-                <Reservation/>
+                <WelcomeDialog/>
             </React.StrictMode>
         );
     }
