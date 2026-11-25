@@ -41,18 +41,19 @@ import toolbar from "./09/finalEX/Toolbar";
 // import Calculator from "./12/ex4/Calculator";
 // import distanceConverter from "./12/ex5/DistanceConverter";
 // import DistanceConverter from "./12/ex5/DistanceConverter";
-import WelcomeDialog from "./13/ex1/WelcomeDialog";
+// import WelcomeDialog from "./13/ex1/WelcomeDialog";
 // import FancyBorder from "./13/ex1/FancyBorder";
+// import WelcomeDialog from "./13/ex2/WelcomeDialog";
+// import SignUPDialog from "./13/ex3/SignUpDialog"
+// import ProfileCard from "./13/ProfileCard";
+import AirbnbApp from "./13/airbnb/AirbnbApp";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-setInterval(() => {
-        root.render(
-            <React.StrictMode>
-                <WelcomeDialog/>
-            </React.StrictMode>
-        );
-    }
-)
+root.render(
+    <React.StrictMode>
+        <AirbnbApp/>
+    </React.StrictMode>
+);
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals

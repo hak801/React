@@ -15,6 +15,12 @@ function WelcomeDialog(props) {
             <p>
                 빨갛고 달달한 사과!
             </p>
+            <h1>
+                유튜브, 인스타, 페이스북, 틱톡
+            </h1>
+            <p>
+                여기에 어떤 내용이 들어가면 좋을까요
+            </p>
         </FancyBorder>
     );
 }
