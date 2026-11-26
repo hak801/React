@@ -1,0 +1,31 @@
+/* MainContent.css의 카드/버튼 스타일 위에 자동차 페이지용 스타일만 추가 */
+.car-card {
+    width: 100%;
+    max-width: 520px;
+    padding: 2rem;
+    box-sizing: border-box;
+}
+
+.car-image {
+    width: 100%;
+    border-radius: 14px;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.car-image svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.car-title {
+    margin: 0;
+    font-size: 1.4rem;
+}
+
+@media (max-width: 480px) {
+    .car-card {
+        padding: 1.25rem;
+    }
+}

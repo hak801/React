@@ -46,12 +46,15 @@ import toolbar from "./09/finalEX/Toolbar";
 // import WelcomeDialog from "./13/ex2/WelcomeDialog";
 // import SignUPDialog from "./13/ex3/SignUpDialog"
 // import ProfileCard from "./13/ProfileCard";
-import AirbnbApp from "./13/airbnb/AirbnbApp";
+// import AirbnbApp from "./13/airbnb/AirbnbApp";
+import MainContent from "./14/DarkOrLight";
+// import DarkOrLight from "./14/DarkOrLight";
+import CarPage from "./14/CarPage";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
     <React.StrictMode>
-        <AirbnbApp/>
+        <CarPage/>
     </React.StrictMode>
 );
 // If you want to start measuring performance in your app, pass a function
