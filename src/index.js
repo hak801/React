@@ -49,12 +49,14 @@ import toolbar from "./09/finalEX/Toolbar";
 // import AirbnbApp from "./13/airbnb/AirbnbApp";
 import MainContent from "./14/DarkOrLight";
 // import DarkOrLight from "./14/DarkOrLight";
-import CarPage from "./14/CarPage";
+// import CarPage from "./14/CarPage";
+import shoppingInfo from "./14/ex1/ShoppingInfo";
+import ShoppingInfo from "./14/ex1/ShoppingInfo";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
     <React.StrictMode>
-        <CarPage/>
+        <ShoppingInfo/>
     </React.StrictMode>
 );
 // If you want to start measuring performance in your app, pass a function

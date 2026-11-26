@@ -1,0 +1,111 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&family=Noto+Serif+KR:wght@400&display=swap");
+
+/* ===== 기본 ===== */
+.shopping-page {
+    font-family: "Noto Sans KR", sans-serif;
+    color: #222;
+    background: #fff;
+    font-size: 14px;
+}
+.shopping-page * { margin: 0; padding: 0; box-sizing: border-box; }
+.shopping-page a { color: inherit; text-decoration: none; }
+.shopping-page ul { list-style: none; }
+.shopping-page button { font-family: inherit; background: none; border: 0; cursor: pointer; color: inherit; }
+
+.shopping-page .inner { max-width: 1060px; margin: 0 auto; padding: 0 16px; }
+
+/* ===== 상단 유틸 바 ===== */
+.util-bar { border-bottom: 1px solid #eee; }
+.util-inner {
+    max-width: 1440px; margin: 0 auto; padding: 0 40px;
+    display: flex; justify-content: flex-end; align-items: center; gap: 28px;
+    height: 26px; font-size: 11px; color: #888;
+}
+.util-inner .lang a.on { color: #222; font-weight: 500; }
+
+/* ===== 헤더 ===== */
+.header { border-bottom: 1px solid #e5e5e5; position: sticky; top: 0; background: #fff; z-index: 10; }
+.header-inner { max-width: 1440px; margin: 0 auto; padding: 0 40px; display: flex; align-items: center; height: 68px; }
+.logo { font-size: 22px; font-weight: 500; letter-spacing: 3px; }
+.gnb { flex: 1; }
+.gnb ul { display: flex; justify-content: center; gap: 44px; font-size: 13px; }
+.gnb a { display: block; padding: 24px 0; }
+.gnb a:hover, .gnb a.on { color: #c8102e; }
+.header-right { display: flex; align-items: center; gap: 16px; font-size: 12px; }
+.header-right .login { display: flex; align-items: center; gap: 4px; }
+.header-right .bar { width: 1px; height: 12px; background: #ccc; }
+.header-right .search { display: flex; }
+
+/* ===== 브레드크럼 / 타이틀 ===== */
+.breadcrumb { text-align: right; font-size: 11px; color: #888; padding-top: 14px; }
+.breadcrumb a { color: #222; text-decoration: underline !important; }
+.page-title {
+    text-align: center; font-family: "Noto Serif KR", serif; font-weight: 400;
+    font-size: 34px; margin: 44px 0 36px;
+}
+
+/* ===== 정렬방식 ===== */
+.view-type { display: flex; justify-content: flex-end; align-items: center; gap: 8px; font-size: 11px; margin-bottom: 14px; }
+.view-btn { display: flex; gap: 2px; height: 12px; opacity: 0.35; }
+.view-btn.grid { width: 12px; }
+.view-btn.list { width: 14px; }
+.view-btn span { flex: 1; border: 1px solid #222; }
+.view-btn.on { opacity: 1; }
+
+/* ===== 레이아웃 ===== */
+.content { display: flex; gap: 14px; align-items: flex-start; padding-bottom: 100px; }
+
+/* ===== 사이드바 ===== */
+.side { width: 137px; flex: 0 0 137px; }
+.side-box { border: 1px solid #e5e5e5; margin-bottom: 6px; }
+.side-head {
+    width: 100%; display: flex; justify-content: space-between; align-items: center;
+    padding: 9px 10px; font-size: 11px;
+}
+.side-head svg { transition: transform 0.2s; }
+.side-box.open .side-head svg { transform: rotate(180deg); }
+.side-body { border-top: 1px solid #e5e5e5; padding: 10px 16px 12px; }
+.side-body li { padding: 3px 0; }
+.side-body button { font-size: 11px; color: #555; text-align: left; }
+.side-body button:hover,
+.side-body button.on { color: #c8102e; }
+.side-body button.on { font-weight: 500; }
+
+/* ===== 카드 리스트 ===== */
+.card-list { flex: 1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 50px 10px; }
+.card { cursor: pointer; }
+.thumb { aspect-ratio: 1 / 1; overflow: hidden; background: #eee; }
+.thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s; }
+.card:hover .thumb img { transform: scale(1.05); }
+.thumb .no-img { width: 100%; height: 100%; background: #e9e6e1; }
+
+.info { padding-top: 14px; }
+.info .cate { font-size: 10px; color: #a08250; }
+.info .tit { font-size: 13px; font-weight: 400; margin: 8px 0 14px; }
+.info .date, .info .place { font-size: 10px; color: #777; line-height: 1.7; }
+
+/* 목록형 보기 */
+.card-list.row { grid-template-columns: 1fr; gap: 20px; }
+.card-list.row .card { display: flex; gap: 24px; padding-bottom: 20px; border-bottom: 1px solid #eee; }
+.card-list.row .thumb { width: 180px; flex: 0 0 180px; }
+.card-list.row .info { padding-top: 4px; }
+
+.empty { flex: 1; text-align: center; color: #999; padding: 80px 0; }
+
+/* ===== 푸터 ===== */
+.footer { background: #f7f7f7; border-top: 1px solid #e5e5e5; padding: 36px 0; font-size: 11px; color: #888; line-height: 1.8; }
+.footer-logo { font-size: 16px; color: #555; letter-spacing: 3px; margin-bottom: 8px; }
+
+/* ===== 반응형 ===== */
+@media (max-width: 860px) {
+    .gnb { display: none; }
+    .logo { flex: 1; }
+    .util-inner, .header-inner { padding: 0 16px; }
+    .content { flex-direction: column; }
+    .side { width: 100%; flex: none; }
+    .card-list { grid-template-columns: repeat(2, 1fr); width: 100%; }
+}
+@media (max-width: 520px) {
+    .card-list { grid-template-columns: 1fr; }
+    .page-title { font-size: 26px; }
+}
